@@ -1,2 +1,1 @@
-Сервис для управления netitov.ru
-testchanges
+frontend часть сервиса для управления netitov.ru
