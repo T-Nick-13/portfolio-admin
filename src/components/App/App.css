@@ -1,12 +1,14 @@
 .page {
   font-family: 'Inter', Arial, Helvetica, Sans-serif;
   background: rgb(102, 140, 123, 0.1);
+  /* color: #fff; */
+
 }
 
 .page__wrapper {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   min-height: 100vh;
-  padding: 0 20px;
+  /* padding: 0 20px; */
   margin: auto;
   display: flex;
   flex-direction: column;

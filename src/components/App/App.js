@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-//import Header from '../Header/Header';
+import Navigation from '../Navigation/Navigation';
 
 function App() {
 
   return (
     <div className="page">
       <div className="page__wrapper">
-
+        <Navigation />
       </div>
     </div>
   );
