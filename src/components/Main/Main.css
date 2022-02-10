@@ -1,0 +1,46 @@
+.main {
+  column-count: 3;
+  column-gap: 4px;
+  max-width: 1280px;
+  min-height: 66vh;
+  width: 80vw;
+  padding-top: 10px;
+  padding-left: 3px;
+}
+
+.filter__btn {
+  position: fixed;
+  z-index: 5;
+  margin: 0;
+  background-color: rgb(35 35 35 / 70%);
+  color: white;
+  border-radius: 10px;
+  font-size: 13px;
+  transform: translate(-50%);
+  top: 18%;
+  left: 50%;
+  padding: 6px;
+  cursor: pointer;
+  display: none;
+}
+
+.filter__btn:hover {
+  background-color: rgb(35 35 35 / 90%);
+}
+
+.filter__btn_active {
+  display: block;
+}
+
+@media (max-width: 884px) {
+  .main {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 580px) {
+  .main {
+    column-count: 1;
+  }
+
+}

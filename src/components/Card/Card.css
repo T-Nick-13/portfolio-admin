@@ -1,0 +1,47 @@
+.card {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.card:hover .card__overlay {
+  opacity: 0.4;
+}
+
+.card:hover .card__tag{
+  opacity: 1;
+}
+
+.card__overlay {
+  position: absolute;
+  opacity: 0;
+  background-color: #000;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: 0.3s all linear;
+}
+
+.card__img {
+  width: 100%;
+  display: block;
+}
+
+.card__tag {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  transition: 0.3s all linear;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(to top, rgb(0,0,0, 0.7), transparent);
+  width: 100%;
+  margin: 0;
+}
+
+.card__tag:hover {
+  text-decoration: underline;
+}

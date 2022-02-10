@@ -1,7 +1,7 @@
 .menu {
   width: 20%;
   max-width: 250px;
-  height: 100vh;
+  min-height: 100vh;
   color: #fff;
   background-color: rgb(32,32,32);
 }
@@ -9,6 +9,8 @@
 .menu__container {
   padding-left: 5%;
   padding-top: 80px;
+  position: sticky;
+  top: 0;
 }
 
 .menu__heading {
