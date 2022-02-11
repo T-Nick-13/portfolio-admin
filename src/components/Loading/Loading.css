@@ -1,0 +1,38 @@
+.form {
+  position: absolute;
+  left: 45%;
+  top: 7%;
+  width: 250px;
+  height: 250px;
+  background: rgb(1 1 1 / 15%);
+  border-radius: 10px;
+  outline: 2px dashed rgb(1 1 1 / 30%);
+  outline-offset: -7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.form__image {
+  width: 40%;
+  margin-bottom: 15px;
+}
+
+.form__input {
+  display: none;
+}
+
+.form__label {
+  font-weight: 500;
+}
+
+.form__label:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form__paragraph {
+
+}

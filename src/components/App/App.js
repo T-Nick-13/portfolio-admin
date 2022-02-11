@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 import Main from '../Main/Main';
+import Loading from '../Loading/Loading'
 
 import { pic } from '../../utils/constants';
 
@@ -17,6 +18,7 @@ function App() {
         <Main
           pic={filteredCards}
         />
+        <Loading />
       </div>
     </div>
   );
