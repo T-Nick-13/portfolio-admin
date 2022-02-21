@@ -10,15 +10,29 @@ import { pic } from '../../utils/constants';
 function App() {
 
   const [filteredCards, setFilteredCards] = React.useState(pic);
+  const [formActivity, setFormActivity] = React.useState(false);
+
+  function handleLoading() {
+    setFormActivity(true);
+  }
+
+  function handleLogoClick() {
+    setFormActivity(false);
+  }
 
   return (
     <div className="page">
       <div className="page__wrapper">
-        <Navigation />
+        <Navigation
+          handleLoading={handleLoading}
+          onLogoClick={handleLogoClick}
+        />
         <Main
           pic={filteredCards}
+          formActivity={formActivity}
         />
-        <Loading />
+        <Loading
+          formActivity={formActivity}/>
       </div>
     </div>
   );

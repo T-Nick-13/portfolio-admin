@@ -16,6 +16,7 @@
 .menu__heading {
   font-weight: 500;
   margin: 0 0 80px;
+  cursor: pointer;
 }
 
 .menu__ul {
