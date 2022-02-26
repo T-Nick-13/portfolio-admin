@@ -24,3 +24,11 @@
 .body_unscrolled {
   overflow: hidden;
 }
+
+@media (max-width: 580px) {
+  .page__wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}

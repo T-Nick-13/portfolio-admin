@@ -3,10 +3,9 @@
   column-gap: 4px;
   max-width: 1280px;
   min-height: 66vh;
-  width: 80vw;
-  padding-top: 10px;
-  padding-left: 3px;
-  margin-top: 10px;
+  width: 100%;
+  padding: 10px 3px 5px;
+  margin-top: 0;
   transition: all 0.3s;
 }
 
@@ -47,6 +46,9 @@
 @media (max-width: 580px) {
   .main {
     column-count: 1;
+    width: 95vw;
+    padding: 0;
+    margin: 10px 0 10px;
   }
 
 }
