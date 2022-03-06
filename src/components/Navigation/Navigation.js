@@ -15,6 +15,8 @@ function Navigation(props) {
     props.onLogoClick();
   }
 
+  const iconClass = props.iconIsActive ? 'menu__icon_active' : '';
+
   return (
     <nav className="menu">
       <div className="menu__container">
@@ -22,7 +24,7 @@ function Navigation(props) {
       <div className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></div>
       <ul className="menu__ul">
         <li>
-          <img className="menu__icon" src={uploadLogo} alt="download-icon" onClick={handleClickLoading}></img>
+          <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon" onClick={handleClickLoading}></img>
           <Link to="#" className="menu__li" onClick={handleClickLoading}>Загрузить</Link>
         </li>
         <li>

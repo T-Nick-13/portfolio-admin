@@ -13,7 +13,7 @@ function App() {
   const [formActivity, setFormActivity] = React.useState(false);
 
   function handleLoading() {
-    setFormActivity(true);
+    formActivity ? setFormActivity(false) : setFormActivity(true);
   }
 
   function handleLogoClick() {
@@ -26,6 +26,7 @@ function App() {
         <Navigation
           handleLoading={handleLoading}
           onLogoClick={handleLogoClick}
+          iconIsActive={formActivity}
         />
         <Main
           pic={filteredCards}

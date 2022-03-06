@@ -54,6 +54,10 @@
   opacity: 1;
 }
 
+.menu__icon_active {
+  opacity: 1;
+}
+
 .menu__heading_ts {
   display: none;
   width: 60px;
