@@ -11,14 +11,31 @@ function App() {
 
   const [filteredCards, setFilteredCards] = React.useState(pic);
   const [formActivity, setFormActivity] = React.useState(false);
+  const [deletingActive, setDeletingActive] = React.useState(false);
+  const [btnBoolean, setBtnBoolean] = React.useState(false);
+
+  const btnContent = btnBoolean ? 'Отменить' : 'Выбрать';
 
   function handleLoading() {
     formActivity ? setFormActivity(false) : setFormActivity(true);
+    setDeletingActive(false);
   }
 
   function handleLogoClick() {
     setFormActivity(false);
+    setDeletingActive(false);
   }
+
+  function handleClickDelete() {
+    deletingActive ? setDeletingActive(false) : setDeletingActive(true);
+    setFormActivity(false);
+  }
+
+  function handleChoiceClick() {
+    btnBoolean ? setBtnBoolean(false) : setBtnBoolean(true);
+  }
+
+
 
   return (
     <div className="page">
@@ -27,10 +44,15 @@ function App() {
           handleLoading={handleLoading}
           onLogoClick={handleLogoClick}
           iconIsActive={formActivity}
+          onDeleteClick={handleClickDelete}
         />
         <Main
           pic={filteredCards}
           formActivity={formActivity}
+          deletingActive={deletingActive}
+          onChoiceClick={handleChoiceClick}
+          btnContent={btnContent}
+          btnChoiceActve={btnBoolean}
         />
         <Loading
           formActivity={formActivity}/>

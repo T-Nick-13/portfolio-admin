@@ -15,6 +15,10 @@ function Navigation(props) {
     props.onLogoClick();
   }
 
+  function handleClickDelete() {
+    props.onDeleteClick();
+  }
+
   const iconClass = props.iconIsActive ? 'menu__icon_active' : '';
 
   return (
@@ -28,8 +32,8 @@ function Navigation(props) {
           <Link to="#" className="menu__li" onClick={handleClickLoading}>Загрузить</Link>
         </li>
         <li>
-          <img className="menu__icon" src={deletedLogo} alt="delete-icon"></img>
-          <Link to="#" className="menu__li">Удалить</Link>
+          <img className="menu__icon" src={deletedLogo} alt="delete-icon" onClick={handleClickDelete}></img>
+          <Link to="#" className="menu__li" onClick={handleClickDelete}>Удалить</Link>
         </li>
         <li>
           <img className="menu__icon" src={statisticLogo} alt="stat-icon"></img>
