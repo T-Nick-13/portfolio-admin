@@ -23,6 +23,11 @@
   transition: 0.3s all linear;
 }
 
+.card__overlay_selected {
+  opacity: 1;
+  background-color: rgb(140 140 140 / 70%);
+}
+
 .card__img {
   width: 100%;
   display: block;
@@ -44,4 +49,16 @@
 
 .card__tag:hover {
   text-decoration: underline;
+}
+
+.card__selected {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 25px;
+  visibility: hidden;
+}
+
+.card__selected_active {
+  visibility: visible;
 }

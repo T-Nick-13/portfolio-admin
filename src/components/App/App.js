@@ -7,12 +7,14 @@ import Loading from '../Loading/Loading'
 
 import { pic } from '../../utils/constants';
 
+
 function App() {
 
   const [filteredCards, setFilteredCards] = React.useState(pic);
   const [formActivity, setFormActivity] = React.useState(false);
   const [deletingActive, setDeletingActive] = React.useState(false);
   const [btnBoolean, setBtnBoolean] = React.useState(false);
+  const [selectedCards, setSelectedCards] = React.useState([]);
 
   const btnContent = btnBoolean ? 'Отменить' : 'Выбрать';
 
@@ -35,7 +37,11 @@ function App() {
     btnBoolean ? setBtnBoolean(false) : setBtnBoolean(true);
   }
 
-
+  function selectCard(card) {
+    if (btnBoolean) {
+      setSelectedCards([card,...selectedCards]);
+    }
+  }
 
   return (
     <div className="page">
@@ -53,6 +59,7 @@ function App() {
           onChoiceClick={handleChoiceClick}
           btnContent={btnContent}
           btnChoiceActve={btnBoolean}
+          onCardSelect={selectCard}
         />
         <Loading
           formActivity={formActivity}/>

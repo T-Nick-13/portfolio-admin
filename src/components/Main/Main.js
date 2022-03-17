@@ -28,7 +28,8 @@ function Main(props) {
             card={card}
             tag={card.tag}
             key={card.name}
-
+            onCardSelect={props.onCardSelect}
+            btnChoiceActve={props.btnChoiceActve}
           />
         )
       })}
