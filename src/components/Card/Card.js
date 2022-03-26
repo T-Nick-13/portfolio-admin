@@ -4,17 +4,15 @@ import selectedLogo from '../../images/light/premium-icon-select-2594142.png';
 
 function Card(props) {
 
-  const [activeClass, setActiveClass] = React.useState(false);
-
   function selectCard() {
     if (props.btnChoiceActve) {
       props.onCardSelect(props.card);
-      activeClass ? setActiveClass(false) : setActiveClass(true);
     }
   }
 
-  const overlaySelectedClass = activeClass ? 'card__overlay_selected' : '';
-  const selectedClass = activeClass ? 'card__selected_active' : '';
+  const isLiked = props.selectedCards.some(i => i === props.card);
+  const overlaySelectedClass = isLiked ? 'card__overlay_selected' : '';
+  const selectedClass = isLiked ? 'card__selected_active' : '';
 
   return (
     <div className="card" >

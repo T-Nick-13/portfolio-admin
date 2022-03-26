@@ -86,6 +86,7 @@
 .deleting__counter {
   color: #fff;
   margin: 0 0 0 7%;
+  min-width: 167px;
 }
 
 .deleting__counter_inactive {

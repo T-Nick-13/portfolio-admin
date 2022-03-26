@@ -18,7 +18,7 @@ function Main(props) {
       <div className={`deleting ${deletingClass}`}>
         <div className="deleting__container">
           <button className="deleting__btn" onClick={handleChoiceClick}>{props.btnContent}</button>
-          <p className={`deleting__counter ${counterClass}`}>{`Выбрано ${props.amount} объектов`}</p>
+          <p className={`deleting__counter ${counterClass}`}>{`Выбрано ${props.amountSelectedCards} объектов`}</p>
           <img className="deleting__bin" src={bin} alt="trash bin picture"></img>
         </div>
       </div>
@@ -30,6 +30,8 @@ function Main(props) {
             key={card.name}
             onCardSelect={props.onCardSelect}
             btnChoiceActve={props.btnChoiceActve}
+            amountSelectedCards={props.amountSelectedCards}
+            selectedCards={props.selectedCards}
           />
         )
       })}

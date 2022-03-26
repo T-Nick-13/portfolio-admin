@@ -8,15 +8,18 @@ import Loading from '../Loading/Loading'
 import { pic } from '../../utils/constants';
 
 
+let selectedCardsSet = new Set([]);
+
 function App() {
 
   const [filteredCards, setFilteredCards] = React.useState(pic);
   const [formActivity, setFormActivity] = React.useState(false);
   const [deletingActive, setDeletingActive] = React.useState(false);
-  const [btnBoolean, setBtnBoolean] = React.useState(false);
-  const [selectedCards, setSelectedCards] = React.useState([]);
+  const [selectBtnActive, setSelectBtnActive] = React.useState(false);
+  const [cardsAmount, setCardsAmount] = React.useState(0);
+  const [selectedCards, setselectedCards] = React.useState([]);
 
-  const btnContent = btnBoolean ? 'Отменить' : 'Выбрать';
+  const btnContent = selectBtnActive ? 'Отменить' : 'Выбрать';
 
   function handleLoading() {
     formActivity ? setFormActivity(false) : setFormActivity(true);
@@ -34,14 +37,23 @@ function App() {
   }
 
   function handleChoiceClick() {
-    btnBoolean ? setBtnBoolean(false) : setBtnBoolean(true);
+    if (selectBtnActive) {
+      setSelectBtnActive(false);
+      selectedCardsSet.clear();
+      setselectedCards(Array.from(selectedCardsSet));
+    }
+    else {
+      setSelectBtnActive(true);
+      setCardsAmount(0);
+    }
   }
 
   function selectCard(card) {
-    if (btnBoolean) {
-      setSelectedCards([card,...selectedCards]);
-    }
+    selectedCardsSet.has(card) ? selectedCardsSet.delete(card) : selectedCardsSet.add(card);
+    setCardsAmount(selectedCardsSet.size);
+    setselectedCards(Array.from(selectedCardsSet));
   }
+
 
   return (
     <div className="page">
@@ -58,8 +70,10 @@ function App() {
           deletingActive={deletingActive}
           onChoiceClick={handleChoiceClick}
           btnContent={btnContent}
-          btnChoiceActve={btnBoolean}
+          btnChoiceActve={selectBtnActive}
           onCardSelect={selectCard}
+          amountSelectedCards={cardsAmount}
+          selectedCards={selectedCards}
         />
         <Loading
           formActivity={formActivity}/>
