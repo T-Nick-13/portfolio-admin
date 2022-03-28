@@ -96,12 +96,16 @@
 .deleting__bin {
   width: 25px;
   margin-left: 7%;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 }
 
 .deleting__bin:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.deleting__bin_inactive {
+  visibility: hidden;
 }
 
 @media (max-width: 884px) {
