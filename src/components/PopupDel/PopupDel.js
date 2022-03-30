@@ -12,9 +12,14 @@ function PopupDel(props) {
     props.onPopupClose();
   }
 
+  function submitDeleting(e) {
+    e.preventDefault();
+    props.onSubmit();
+  }
+
   return (
     <div className={`popup ${activePopup}`}>
-      <form className={`popup__form ${activeForm}`} noValidate /* onSubmit={props.onSubmit} */>
+      <form className={`popup__form ${activeForm}`} noValidate onSubmit={submitDeleting}>
         <button className="popup__btn" type="submit">Удалить {props.amountSelectedCards} {objectsAmount}</button>
         <button className="popup__btn popup__btn_cancel" type="button" onClick={closePopup}>Отмена</button>
       </form>

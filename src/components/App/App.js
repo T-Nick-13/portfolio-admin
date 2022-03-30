@@ -57,10 +57,6 @@ function App() {
   }
 
   function deleteCard() {
-    /* setSelectBtnActive(false);
-    selectedCardsSet.clear();
-    setCardsAmount(0);
-    setselectedCards(Array.from(selectedCardsSet)); */
     setPopupActive(true);
   }
 
@@ -68,12 +64,16 @@ function App() {
     setPopupActive(false);
   }
 
+  function submitDeleting() {
+    handleChoiceClick();
+    closePopup();
+  }
+
   React.useEffect(() => {
 
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
         closePopup();
-        console.log('hi')
       }
     }
     function handleOverlayClose (evt) {
@@ -113,6 +113,7 @@ function App() {
           activePopup={activePopup}
           amountSelectedCards={cardsAmount}
           onPopupClose={closePopup}
+          onSubmit={submitDeleting}
         />
       </div>
     </div>
