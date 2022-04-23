@@ -1,10 +1,12 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+//import { Route, Switch } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 import Main from '../Main/Main';
 import Loading from '../Loading/Loading';
 import PopupDel from '../PopupDel/PopupDel';
+import { MAIN_API } from '../../utils/config';
+import Api from '../../utils/Api';
 
 import { pic } from '../../utils/constants';
 
@@ -13,7 +15,7 @@ let selectedCardsSet = new Set([]);
 
 function App() {
 
-  const [filteredCards, setFilteredCards] = React.useState(pic);
+  const [cardsList, setCardsList] = React.useState([]);
   const [formActivity, setFormActivity] = React.useState(false);
   const [deletingActive, setDeletingActive] = React.useState(false);
   const [selectBtnActive, setSelectBtnActive] = React.useState(false);
@@ -22,6 +24,30 @@ function App() {
   const [activePopup, setPopupActive] = React.useState(false);
 
   const btnContent = selectBtnActive ? 'Отменить' : 'Выбрать';
+
+  const api = new Api ({
+    baseUrl: MAIN_API,
+    headers: {
+      'Content-Type': 'application/json',
+      //'Authorization': `Bearer ${token}`,
+    },
+  });
+
+  React.useEffect(() => {
+    Promise.all([
+      //moviesApi.getInitialMovies(),
+      api.getSavedMovies()
+    ])
+    .then(([cards, savedMovies]) => {
+      localStorage.setItem('cards', JSON.stringify(cards));
+      setCardsList(JSON.parse(localStorage.getItem('cards')));
+      //localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
+      //setSavedMovies(JSON.parse(localStorage.getItem("savedMovies")));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }, [])
 
   function handleLoading() {
     formActivity ? setFormActivity(false) : setFormActivity(true);
@@ -95,7 +121,7 @@ function App() {
           onDeleteClick={handleClickDelete}
         />
         <Main
-          pic={filteredCards}
+          pic={cardsList}
           formActivity={formActivity}
           deletingActive={deletingActive}
           onChoiceClick={handleChoiceClick}

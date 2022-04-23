@@ -34,7 +34,7 @@ function Main(props) {
           <Card
             card={card}
             tag={card.tag}
-            key={card.name}
+            key={card._id}
             onCardSelect={props.onCardSelect}
             btnChoiceActve={props.btnChoiceActve}
             amountSelectedCards={props.amountSelectedCards}
