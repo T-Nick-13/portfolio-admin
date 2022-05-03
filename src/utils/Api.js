@@ -27,11 +27,11 @@ export default class Api {
     .then(this._checkServerResponse);
   }
 
-  saveMovie(movie) {
-    return fetch(`${this._url}/movies`, {
+  saveMovie(link) {
+    return fetch(`${this._url}`, {
       method: 'POST',
-      headers: this._headers,
-      body: JSON.stringify(movie)
+      //headers: this._headers,
+      body: link /* JSON.stringify(link) */
     })
     .then(this._checkServerResponse);
   }

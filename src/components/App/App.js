@@ -95,6 +95,30 @@ function App() {
     closePopup();
   }
 
+  function addNewCard(fileData) {
+
+/*     const newCard = {
+      nameEn: 'name1',
+      tag: 'tag1',
+      link: fileData,
+      cardId: 99
+     } */
+      //data.append("link", fileData);
+
+    const data = new FormData();
+    data.append("link", fileData);
+    debugger
+
+    api.saveMovie(data)
+      .then((m) => {
+        setCardsList([m, ...cardsList]);
+        debugger
+    })
+      .catch((err) => {
+      console.log(err)
+      })
+  }
+
   React.useEffect(() => {
 
     function handleEscClose(evt) {
@@ -134,6 +158,7 @@ function App() {
         />
         <Loading
           formActivity={formActivity}
+          addNewCard={addNewCard}
         />
         <PopupDel
           activePopup={activePopup}
