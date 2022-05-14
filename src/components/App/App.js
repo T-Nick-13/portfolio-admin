@@ -20,7 +20,7 @@ function App() {
   const [deletingActive, setDeletingActive] = React.useState(false);
   const [selectBtnActive, setSelectBtnActive] = React.useState(false);
   const [cardsAmount, setCardsAmount] = React.useState(0);
-  const [selectedCards, setselectedCards] = React.useState([]);
+  const [selectedCards, setSelectedCards] = React.useState([]);
   const [activePopup, setPopupActive] = React.useState(false);
 
   const btnContent = selectBtnActive ? 'Отменить' : 'Выбрать';
@@ -69,7 +69,7 @@ function App() {
       setSelectBtnActive(false);
       selectedCardsSet.clear();
       setCardsAmount(0);
-      setselectedCards(Array.from(selectedCardsSet));
+      setSelectedCards(Array.from(selectedCardsSet));
     }
     else {
       setSelectBtnActive(true);
@@ -79,7 +79,7 @@ function App() {
   function selectCard(card) {
     selectedCardsSet.has(card) ? selectedCardsSet.delete(card) : selectedCardsSet.add(card);
     setCardsAmount(selectedCardsSet.size);
-    setselectedCards(Array.from(selectedCardsSet));
+    setSelectedCards(Array.from(selectedCardsSet));
   }
 
   function deleteCard() {
