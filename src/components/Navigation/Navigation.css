@@ -1,6 +1,6 @@
 .menu {
-  width: 190px;
-  /* max-width: 155px; */
+  /* width: 190px; */
+  max-width: 170px;
   min-height: 100vh;
   color: #fff;
   background-color: rgb(32,32,32);

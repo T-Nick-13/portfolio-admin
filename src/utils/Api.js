@@ -27,11 +27,13 @@ export default class Api {
     .then(this._checkServerResponse);
   }
 
-  saveMovie(link) {
+  saveMovie(data) {
     return fetch(`${this._url}`, {
       method: 'POST',
-      //headers: this._headers,
-      body: link /* JSON.stringify(link) */
+      /* headers: {
+        "Content-Type": "multipart/form-data"
+      }, */
+      body: data
     })
     .then(this._checkServerResponse);
   }

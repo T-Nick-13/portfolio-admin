@@ -6,12 +6,13 @@
   width: 100%;
   padding: 10px 3px 5px;
   margin-top: 0;
-  transition: all 0.3s;
   position: relative;
+  transition: all 0.3s;
 }
 
 .main_shift {
-  margin-top: 350px;
+  visibility: hidden;
+  width: 0;
 }
 
 .filter__btn {
@@ -122,9 +123,9 @@
     margin: 10px 0 10px;
   }
 
-  .main_shift {
+  /* .main_shift {
     margin-top: 255px;
-  }
+  } */
 
   .deleting {
     top: 171px;

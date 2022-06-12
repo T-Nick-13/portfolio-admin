@@ -8,9 +8,6 @@ import PopupDel from '../PopupDel/PopupDel';
 import { MAIN_API } from '../../utils/config';
 import Api from '../../utils/Api';
 
-import { pic } from '../../utils/constants';
-
-
 let selectedCardsSet = new Set([]);
 
 function App() {
@@ -95,23 +92,27 @@ function App() {
     closePopup();
   }
 
-  function addNewCard(fileData) {
-
-/*     const newCard = {
-      nameEn: 'name1',
-      tag: 'tag1',
-      link: fileData,
-      cardId: 99
-     } */
-      //data.append("link", fileData);
+  function addNewCard(fileArr, nameSet, tagSet) {
 
     const data = new FormData();
-    data.append("link", fileData);
-    debugger
+
+    fileArr.forEach((f) => {
+      data.append('link', f);
+      debugger
+    })
+
+    nameSet.forEach((f) => {
+      data.append('name', f);
+    })
+
+    tagSet.forEach((f) => {
+      data.append('tag', f);
+    })
 
     api.saveMovie(data)
       .then((m) => {
-        setCardsList([m, ...cardsList]);
+        setCardsList([...m, ...cardsList]);
+        setFormActivity(false);
         debugger
     })
       .catch((err) => {
