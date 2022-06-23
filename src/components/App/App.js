@@ -25,21 +25,17 @@ function App() {
   const api = new Api ({
     baseUrl: MAIN_API,
     headers: {
-      'Content-Type': 'application/json',
-      //'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
     },
   });
 
   React.useEffect(() => {
     Promise.all([
-      //moviesApi.getInitialMovies(),
-      api.getSavedMovies()
+      api.getCards()
     ])
-    .then(([cards, savedMovies]) => {
+    .then(([cards]) => {
       localStorage.setItem('cards', JSON.stringify(cards));
       setCardsList(JSON.parse(localStorage.getItem('cards')));
-      //localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
-      //setSavedMovies(JSON.parse(localStorage.getItem("savedMovies")));
     })
     .catch((err) => {
       console.log(err);
@@ -98,7 +94,6 @@ function App() {
 
     fileArr.forEach((f) => {
       data.append('link', f);
-      debugger
     })
 
     nameSet.forEach((f) => {
@@ -109,7 +104,7 @@ function App() {
       data.append('tag', f);
     })
 
-    api.saveMovie(data)
+    api.saveCard(data)
       .then((m) => {
         setCardsList([...m, ...cardsList]);
         setFormActivity(false);

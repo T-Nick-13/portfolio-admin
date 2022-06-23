@@ -1,16 +1,18 @@
 import React from 'react';
 
+import Sketch from '../Sketch/Sketch';
 import uploadLogo from '../../images/light/result.svg';
 
 const urlSet = new Set([]);
 const nameSet = new Map();
 const tagSet = new Map();
-const fileSet = [];
+let fileSet = [];
 
 function Loading(props) {
 
   const [formClass, setFormClass] = React.useState('');
   const [objectURL, setObjectURL] = React.useState([]);
+  const [isValid, setIsValid] = React.useState(false);
 
 
   function handleDragOver(e) {
@@ -36,8 +38,7 @@ function Loading(props) {
     ) {
         urlSet.add(window.URL.createObjectURL(file));
         fileSet.push(file);
-        debugger
-      } else alert(`Неподходящий формат файла (${file.type}). Используйте jpeg, jpg, png`)
+      } else alert(`Неподходящий формат файла (${file.type}). Используйте jpeg, jpg, png`);
   }
 
 
@@ -60,53 +61,52 @@ function Loading(props) {
   }
 
   function handleNameChange(e) {
-    nameSet.set(Array.from(e.target.form).indexOf(e.target), e.target.value);
+    nameSet.set(Array.from(e.form).indexOf(e), e.value);
+    setIsValid(e.form.checkValidity());
   }
 
   function handleTagChange(e) {
-    tagSet.set(Array.from(e.target.form).indexOf(e.target), e.target.value);
+    tagSet.set(Array.from(e.form).indexOf(e), e.value);
+    setIsValid(e.form.checkValidity());
   }
 
   function submit(e) {
     e.preventDefault();
-    props.addNewCard(fileSet, nameSet, tagSet);
-    debugger
-
+    if(isValid) {
+      props.addNewCard(fileSet, nameSet, tagSet);
+      setObjectURL([]);
+      urlSet.clear();
+      fileSet = [];
+      setIsValid(false);
+    }
   }
 
   const formActivity = !props.formActivity ? 'form_inactive' : '';
+  const uploadBtnClass = isValid ? 'form__btn form__btn_active' : 'form__btn';
 
   return (
     <form className={`form ${formClass} ${formActivity}`} onDragOver={handleDragOver}
       onDragLeave={handleDragLeave} onDrop={handleDrop} onSubmit={submit}>
-      <img className="form__image" src={uploadLogo} alt="upload picture" />
+      <img className="form__image" src={uploadLogo} alt="upload logo" />
       <input className="form__input" id="form__input" type="file" accept="image/*" multiple onChange={handleLoadingInput} />
       <label className="form__label" htmlFor="form__input">Выберите файлы </label>
       <span className="form__span">или перетащите их сюда</span>
-      <button className="form__btn" type="submit">Загрузить</button>
+      <button className={uploadBtnClass} type="submit">Загрузить</button>
       <div className="form__container">
         {objectURL.map((i) => {
-          return(
-            <div className="form__scetch" key={i}>
-              <img src={i} alt="" className="form__img"></img>
-              <div className="form__overlay">
-                <input className="form__scetch-input" placeholder="Name" onChange={handleNameChange}></input>
-                <select className="form__scetch-input" required="required" onChange={handleTagChange}>
-                  <option value="">Tag</option>
-                  <option value="#card">#card</option>
-                  <option value="#advertising">#advertising</option>
-                  <option value="#sticker">#sticker</option>
-                  <option value="#people">#people</option>
-                  <option value="#holidays">#holidays</option>
-                </select>
-              </div>
-            </div>
+          return (
+            <Sketch
+              objectURL={objectURL}
+              key={i}
+              src={i}
+              handleNameChange={handleNameChange}
+              handleTagChange={handleTagChange}
+            />
           )
         })}
       </div>
     </form>
   );
 }
-
 
 export default Loading;

@@ -20,19 +20,16 @@ export default class Api {
     return Promise.reject(res)
   }
 
-  getSavedMovies() {
+  getCards() {
     return fetch(`${this._url}`, {
       headers: this._headers
     })
     .then(this._checkServerResponse);
   }
 
-  saveMovie(data) {
+  saveCard(data) {
     return fetch(`${this._url}`, {
       method: 'POST',
-      /* headers: {
-        "Content-Type": "multipart/form-data"
-      }, */
       body: data
     })
     .then(this._checkServerResponse);

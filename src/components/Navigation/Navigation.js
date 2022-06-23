@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import uploadLogo from '../../images/light/upload_icon_149852.svg';
-import deletedLogo from '../../images/light/deleteCircle.png';
-import statisticLogo from '../../images/light/bar_chart_bar_graph_statistics_diagram_icon_187100.svg';
+import uploadLogo from '../../images/light/Загрузить.svg';
+import deletedLogo from '../../images/light/Удалить.svg';
+import statisticLogo from '../../images/light/Статистика.svg';
 
 function Navigation(props) {
 

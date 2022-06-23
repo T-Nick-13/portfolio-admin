@@ -55,7 +55,7 @@
   gap: 5px;
 }
 
-.form__scetch {
+.form__sketch {
   position: relative;
   width: 200px;
 }
@@ -81,7 +81,11 @@
   border-radius: 7px;
 }
 
-.form__scetch-input {
+.form__overlay > input {
+  margin-bottom: 5px;
+}
+
+.form__sketch-input {
   background: rgb(255 255 255 / 72%);
   width: 80%;
   height: 20%;
@@ -91,12 +95,47 @@
   border-radius: 5px;
 }
 
-.form__scetch-input:first-of-type {
-  margin-bottom: 5px;
+.form__sketch-input::placeholder {
+  color: #000;
 }
 
-.form__scetch-input::placeholder {
-  color: #000;
+.form__btn {
+  border: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 4px 10px;
+  background-color: rgb(147 147 147);
+  font-size: 15px;
+  transition: all 0.3s;
+  opacity: 0.3;
+}
+
+.form__btn_active {
+  opacity: 1;
+}
+
+.form__btn:hover {
+  cursor: not-allowed;
+}
+
+.form__btn_active:hover {
+  background-color: rgb(147 147 147 /60%);
+  cursor: pointer;
+}
+
+.form__validation {
+  width: 20px;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.form__validation_active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* @media (max-width: 884px) {

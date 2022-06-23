@@ -1,8 +1,6 @@
 import Card from '../Card/Card';
-import Loading from '../Loading/Loading';
 
 import bin from '../../images/light/free-icon-delete-5613811.png';
-
 
 function Main(props) {
 
