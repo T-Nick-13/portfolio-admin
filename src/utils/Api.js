@@ -35,8 +35,8 @@ export default class Api {
     .then(this._checkServerResponse);
   }
 
-  deleteMovie(movie) {
-    return fetch(`${this._url}/movies/${movie}`, {
+  deleteCard(cardId) {
+    return fetch(`${this._url}/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })

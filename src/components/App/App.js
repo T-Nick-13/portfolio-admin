@@ -86,6 +86,20 @@ function App() {
   function submitDeleting() {
     handleChoiceClick();
     closePopup();
+
+    const delCard = selectedCards.map((c) => {
+      return c._id;
+    })
+
+    api.deleteCard(delCard)
+      .then(() => {
+        const newCards = cardsList.filter(c => !delCard.includes(c._id));
+        setCardsList(newCards);
+        setDeletingActive(false)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   function addNewCard(fileArr, nameSet, tagSet) {
@@ -108,7 +122,6 @@ function App() {
       .then((m) => {
         setCardsList([...m, ...cardsList]);
         setFormActivity(false);
-        debugger
     })
       .catch((err) => {
       console.log(err)

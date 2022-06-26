@@ -25,7 +25,7 @@ function Main(props) {
         <div className="deleting__container">
           <button className="deleting__btn" onClick={handleChoiceClick}>{props.btnContent}</button>
           <p className={`deleting__counter ${counterClass}`}>Выбрано {props.amountSelectedCards} {objectsAmount}</p>
-          <img className={`deleting__bin ${binClass}`} src={bin} alt="trash bin picture" onClick={deleteCard}></img>
+          <img className={`deleting__bin ${binClass}`} src={bin} alt="trash bin" onClick={deleteCard}></img>
         </div>
       </div>
       {props.pic.map((card) =>{
