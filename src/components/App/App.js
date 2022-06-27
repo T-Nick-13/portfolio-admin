@@ -45,24 +45,35 @@ function App() {
   function handleLoading() {
     formActivity ? setFormActivity(false) : setFormActivity(true);
     setDeletingActive(false);
+    cancelSelection();
   }
 
   function handleLogoClick() {
     setFormActivity(false);
     setDeletingActive(false);
+    cancelSelection();
   }
 
   function handleClickDelete() {
-    deletingActive ? setDeletingActive(false) : setDeletingActive(true);
+    if(deletingActive) {
+      setDeletingActive(false);
+      cancelSelection()
+    } else {
+      setDeletingActive(true)
+    }
     setFormActivity(false);
+  }
+
+  function cancelSelection() {
+    setSelectBtnActive(false);
+    selectedCardsSet.clear();
+    setCardsAmount(0);
+    setSelectedCards(Array.from(selectedCardsSet));
   }
 
   function handleChoiceClick() {
     if (selectBtnActive) {
-      setSelectBtnActive(false);
-      selectedCardsSet.clear();
-      setCardsAmount(0);
-      setSelectedCards(Array.from(selectedCardsSet));
+      cancelSelection();
     }
     else {
       setSelectBtnActive(true);
