@@ -1,10 +1,11 @@
 import React from 'react';
-//import { Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 import Main from '../Main/Main';
 import Loading from '../Loading/Loading';
 import PopupDel from '../PopupDel/PopupDel';
+import Statistic from '../Statistic/Statistic';
 import { MAIN_API } from '../../utils/config';
 import Api from '../../utils/Api';
 
@@ -164,7 +165,24 @@ function App() {
           iconIsActive={formActivity}
           onDeleteClick={handleClickDelete}
         />
-        <Main
+        <Routes>
+        <Route path="/" element={
+          <Main
+            pic={cardsList}
+            formActivity={formActivity}
+            deletingActive={deletingActive}
+            onChoiceClick={handleChoiceClick}
+            btnContent={btnContent}
+            btnChoiceActve={selectBtnActive}
+            onCardSelect={selectCard}
+            amountSelectedCards={cardsAmount}
+            selectedCards={selectedCards}
+            onCardDelete={deleteCard}
+          />}
+        />
+
+
+       {/*  <Main
           pic={cardsList}
           formActivity={formActivity}
           deletingActive={deletingActive}
@@ -175,7 +193,21 @@ function App() {
           amountSelectedCards={cardsAmount}
           selectedCards={selectedCards}
           onCardDelete={deleteCard}
-        />
+        /> */}
+
+        {/* <Loading
+          formActivity={formActivity}
+          addNewCard={addNewCard}
+        /> */}
+          {/* <Route path="/loading"
+            element={<Loading formActivity={formActivity} addNewCard={addNewCard} />}
+          /> */}
+
+          <Route path="/statistic"
+            element={<Statistic cards={cardsList} />}
+          />
+
+        </Routes>
         <Loading
           formActivity={formActivity}
           addNewCard={addNewCard}
@@ -186,6 +218,7 @@ function App() {
           onPopupClose={closePopup}
           onSubmit={submitDeleting}
         />
+
       </div>
     </div>
   );

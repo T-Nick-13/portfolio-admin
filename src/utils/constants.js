@@ -14,6 +14,10 @@ import ThanksPeople from '../images/light/thanks-min.jpg';
 import hallSale from '../images/light/againhalloween-min.jpg';
 import familyPeople from '../images/light/families-min.jpg';
 
+export const tags = [
+   '#advertising', '#card', '#holidays', '#people', '#sticker'
+];
+
 
 export const pic = [
   {

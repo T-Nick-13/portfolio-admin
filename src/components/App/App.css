@@ -25,6 +25,12 @@
   overflow: hidden;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+
 @media (max-width: 580px) {
   .page__wrapper {
     flex-direction: column;

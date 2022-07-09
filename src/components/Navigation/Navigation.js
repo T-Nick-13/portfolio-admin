@@ -24,20 +24,21 @@ function Navigation(props) {
   return (
     <nav className="menu">
       <div className="menu__container">
-      <h1 className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</h1>
+      {/* <h1 className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</h1> */}
+      <Link to="/" className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</Link>
       <div className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></div>
       <ul className="menu__ul">
         <li>
           <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon" onClick={handleClickLoading}></img>
-          <Link to="#" className="menu__li" onClick={handleClickLoading}>Загрузить</Link>
+          <Link to="/" className="menu__li" onClick={handleClickLoading}>Загрузить</Link>
         </li>
         <li>
           <img className="menu__icon" src={deletedLogo} alt="delete-icon" onClick={handleClickDelete}></img>
-          <Link to="#" className="menu__li" onClick={handleClickDelete}>Удалить</Link>
+          <Link to="/" className="menu__li" onClick={handleClickDelete}>Удалить</Link>
         </li>
         <li>
           <img className="menu__icon" src={statisticLogo} alt="stat-icon"></img>
-          <Link to="#" className="menu__li">Статистика</Link>
+          <Link to="/statistic" className="menu__li">Статистика</Link>
         </li>
       </ul>
       </div>
