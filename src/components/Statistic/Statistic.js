@@ -1,9 +1,6 @@
 import React from 'react';
 
 import { tags } from '../../utils/constants';
-import selectedLogo from '../../images/light/AdobeStock_446193555.jpeg';
-import selectedLogos from '../../images/light/bigsale.jpg';
-import selectedLogos3 from '../../images/light/delivers.jpg';
 
 const tagSet = new Map();
 
@@ -29,8 +26,10 @@ function Statistic(props) {
     maxValue = Math.max(...tagSet.values());
   })
 
+  const statClass = props.statActive ? 'stat stat_active' : 'stat';
+
   return (
-    <div className="stat">
+    <div className={statClass}>
 
       <div className="stat__works">
         <div className="stat__main">
@@ -52,8 +51,7 @@ function Statistic(props) {
         </div>
       </div>
 
-
-      <div className="stat__views stat__works">
+{/*       <div className="stat__views stat__works">
 
         <div className="stat__main">
           <h2 className="stat__heading">13</h2>
@@ -72,7 +70,7 @@ function Statistic(props) {
           </div>
         </div>
 
-      </div>
+      </div> */}
 
     </div>
   );

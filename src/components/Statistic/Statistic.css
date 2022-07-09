@@ -1,8 +1,18 @@
 .stat {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 0 0 40px;
   gap: 40px;
+  visibility: hidden;
+  top: -100%;
+  transition: all 0.3s;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.stat_active {
+  visibility: visible;
+  top: 7%;
 }
 
 .stat__main {

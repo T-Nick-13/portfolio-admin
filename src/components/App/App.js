@@ -16,6 +16,8 @@ function App() {
   const [cardsList, setCardsList] = React.useState([]);
   const [formActivity, setFormActivity] = React.useState(false);
   const [deletingActive, setDeletingActive] = React.useState(false);
+  const [statActive, setStatActive] = React.useState(false);
+  const [cardsListActive, setCardsListActive] = React.useState(true);
   const [selectBtnActive, setSelectBtnActive] = React.useState(false);
   const [cardsAmount, setCardsAmount] = React.useState(0);
   const [selectedCards, setSelectedCards] = React.useState([]);
@@ -47,22 +49,35 @@ function App() {
     formActivity ? setFormActivity(false) : setFormActivity(true);
     setDeletingActive(false);
     cancelSelection();
+    setCardsListActive(false);
   }
 
   function handleLogoClick() {
     setFormActivity(false);
     setDeletingActive(false);
     cancelSelection();
+    setStatActive(false);
+    setCardsListActive(true)
   }
 
   function handleClickDelete() {
     if(deletingActive) {
       setDeletingActive(false);
-      cancelSelection()
+      cancelSelection();
     } else {
-      setDeletingActive(true)
+      setDeletingActive(true);
     }
     setFormActivity(false);
+    setCardsListActive(true);
+    setStatActive(false);
+  }
+
+  function clickStat() {
+    setStatActive(true);
+    cancelSelection();
+    setCardsListActive(false);
+    setFormActivity(false);
+    setDeletingActive(false);
   }
 
   function cancelSelection() {
@@ -164,25 +179,10 @@ function App() {
           onLogoClick={handleLogoClick}
           iconIsActive={formActivity}
           onDeleteClick={handleClickDelete}
-        />
-        <Routes>
-        <Route path="/" element={
-          <Main
-            pic={cardsList}
-            formActivity={formActivity}
-            deletingActive={deletingActive}
-            onChoiceClick={handleChoiceClick}
-            btnContent={btnContent}
-            btnChoiceActve={selectBtnActive}
-            onCardSelect={selectCard}
-            amountSelectedCards={cardsAmount}
-            selectedCards={selectedCards}
-            onCardDelete={deleteCard}
-          />}
+          onStatClick={clickStat}
         />
 
-
-       {/*  <Main
+        <Main
           pic={cardsList}
           formActivity={formActivity}
           deletingActive={deletingActive}
@@ -193,25 +193,19 @@ function App() {
           amountSelectedCards={cardsAmount}
           selectedCards={selectedCards}
           onCardDelete={deleteCard}
-        /> */}
+          cardsListActive={cardsListActive}
+        />
 
-        {/* <Loading
-          formActivity={formActivity}
-          addNewCard={addNewCard}
-        /> */}
-          {/* <Route path="/loading"
-            element={<Loading formActivity={formActivity} addNewCard={addNewCard} />}
-          /> */}
-
-          <Route path="/statistic"
-            element={<Statistic cards={cardsList} />}
-          />
-
-        </Routes>
         <Loading
           formActivity={formActivity}
           addNewCard={addNewCard}
         />
+
+        <Statistic
+          cards={cardsList}
+          statActive={statActive}
+        />
+
         <PopupDel
           activePopup={activePopup}
           amountSelectedCards={cardsAmount}

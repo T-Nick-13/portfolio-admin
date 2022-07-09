@@ -19,6 +19,10 @@ function Navigation(props) {
     props.onDeleteClick();
   }
 
+  function handleClickStat() {
+    props.onStatClick();
+  }
+
   const iconClass = props.iconIsActive ? 'menu__icon_active' : '';
 
   return (
@@ -28,17 +32,17 @@ function Navigation(props) {
       <Link to="/" className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</Link>
       <div className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></div>
       <ul className="menu__ul">
-        <li>
-          <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon" onClick={handleClickLoading}></img>
-          <Link to="/" className="menu__li" onClick={handleClickLoading}>Загрузить</Link>
+        <li onClick={handleClickLoading}>
+          <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon"></img>
+          <Link to="/" className="menu__li">Загрузить</Link>
         </li>
-        <li>
-          <img className="menu__icon" src={deletedLogo} alt="delete-icon" onClick={handleClickDelete}></img>
-          <Link to="/" className="menu__li" onClick={handleClickDelete}>Удалить</Link>
+        <li onClick={handleClickDelete}>
+          <img className="menu__icon" src={deletedLogo} alt="delete-icon" ></img>
+          <Link to="/" className="menu__li">Удалить</Link>
         </li>
-        <li>
+        <li onClick={handleClickStat}>
           <img className="menu__icon" src={statisticLogo} alt="stat-icon"></img>
-          <Link to="/statistic" className="menu__li">Статистика</Link>
+          <Link to="/" className="menu__li">Статистика</Link>
         </li>
       </ul>
       </div>

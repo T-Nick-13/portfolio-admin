@@ -4,7 +4,8 @@ import bin from '../../images/light/free-icon-delete-5613811.png';
 
 function Main(props) {
 
-  const formActivity = props.formActivity ? 'main main_shift' : 'main';
+  //const formActivity = props.formActivity ? 'main main_shift' : 'main';
+  const formActivity = props.cardsListActive ? 'main' : 'main main_shift';
   const deletingClass = props.deletingActive ? '' : 'deleting_inactive';
   const counterClass = props.btnChoiceActve ? '' : 'deleting__counter_inactive';
   const binClass = props.amountSelectedCards > 0 ? '' : 'deleting__bin_inactive';
