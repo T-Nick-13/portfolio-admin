@@ -6,6 +6,7 @@ import Main from '../Main/Main';
 import Loading from '../Loading/Loading';
 import PopupDel from '../PopupDel/PopupDel';
 import Statistic from '../Statistic/Statistic';
+import Login from '../Login/Login';
 import { MAIN_API } from '../../utils/config';
 import Api from '../../utils/Api';
 
@@ -182,36 +183,59 @@ function App() {
           onStatClick={clickStat}
         />
 
-        <Main
-          pic={cardsList}
-          formActivity={formActivity}
-          deletingActive={deletingActive}
-          onChoiceClick={handleChoiceClick}
-          btnContent={btnContent}
-          btnChoiceActve={selectBtnActive}
-          onCardSelect={selectCard}
-          amountSelectedCards={cardsAmount}
-          selectedCards={selectedCards}
-          onCardDelete={deleteCard}
-          cardsListActive={cardsListActive}
-        />
-
-        <Loading
-          formActivity={formActivity}
-          addNewCard={addNewCard}
-        />
-
-        <Statistic
-          cards={cardsList}
-          statActive={statActive}
-        />
-
         <PopupDel
           activePopup={activePopup}
           amountSelectedCards={cardsAmount}
           onPopupClose={closePopup}
           onSubmit={submitDeleting}
         />
+
+        <Routes>
+
+          <Route
+            path="/signin"
+            element={ <Login /> }
+          />
+
+          <Route
+            path="/"
+            element={
+              <Main
+                pic={cardsList}
+                formActivity={formActivity}
+                deletingActive={deletingActive}
+                onChoiceClick={handleChoiceClick}
+                btnContent={btnContent}
+                btnChoiceActve={selectBtnActive}
+                onCardSelect={selectCard}
+                amountSelectedCards={cardsAmount}
+                selectedCards={selectedCards}
+                onCardDelete={deleteCard}
+                cardsListActive={cardsListActive}
+              />
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <Loading
+                formActivity={formActivity}
+                addNewCard={addNewCard}
+              />
+            }
+          />
+
+          <Route
+            path="/statistic"
+            element={
+              <Statistic
+                cards={cardsList}
+                statActive={statActive}
+              />
+            }
+          />
+
+        </Routes>
 
       </div>
     </div>

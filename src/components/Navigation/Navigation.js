@@ -34,7 +34,7 @@ function Navigation(props) {
       <ul className="menu__ul">
         <li onClick={handleClickLoading}>
           <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon"></img>
-          <Link to="/" className="menu__li">Загрузить</Link>
+          <Link to="/upload" className="menu__li">Загрузить</Link>
         </li>
         <li onClick={handleClickDelete}>
           <img className="menu__icon" src={deletedLogo} alt="delete-icon" ></img>
@@ -42,7 +42,7 @@ function Navigation(props) {
         </li>
         <li onClick={handleClickStat}>
           <img className="menu__icon" src={statisticLogo} alt="stat-icon"></img>
-          <Link to="/" className="menu__li">Статистика</Link>
+          <Link to="/statistic" className="menu__li">Статистика</Link>
         </li>
       </ul>
       </div>
