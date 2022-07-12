@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate  } from 'react-router-dom';
 
 import Navigation from '../Navigation/Navigation';
 import Main from '../Main/Main';
@@ -7,6 +7,7 @@ import Loading from '../Loading/Loading';
 import PopupDel from '../PopupDel/PopupDel';
 import Statistic from '../Statistic/Statistic';
 import Login from '../Login/Login';
+import ProtectedRoute from '../ProtectedRoute';
 import { MAIN_API } from '../../utils/config';
 import Api from '../../utils/Api';
 
@@ -23,8 +24,11 @@ function App() {
   const [cardsAmount, setCardsAmount] = React.useState(0);
   const [selectedCards, setSelectedCards] = React.useState([]);
   const [activePopup, setPopupActive] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [unauthorized, setUnauthorized] = React.useState(false);
 
   const btnContent = selectBtnActive ? 'Отменить' : 'Выбрать';
+  const navigate = useNavigate();
 
   const api = new Api ({
     baseUrl: MAIN_API,
@@ -123,11 +127,46 @@ function App() {
       .then(() => {
         const newCards = cardsList.filter(c => !delCard.includes(c._id));
         setCardsList(newCards);
-        setDeletingActive(false)
+        setDeletingActive(false);
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       })
+  }
+
+  function handleLogin(data) {
+    const { email, password } = data;
+    api.authorize(email, password)
+      .then((res) => {
+        if (res) {
+          localStorage.setItem('token', res.token);
+          setLoggedIn(true);
+          navigate('/');
+        }
+      })
+      .catch((err) => {
+        if (err.statusText === "Unauthorized") {
+          setUnauthorized(true);
+        } else {
+          console.log(err);
+        }
+      })
+  }
+
+  function tokenCheck() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      api.getContent(token)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            navigate('/');
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   function addNewCard(fileArr, nameSet, tagSet) {
@@ -157,7 +196,6 @@ function App() {
   }
 
   React.useEffect(() => {
-
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
         closePopup();
@@ -170,6 +208,10 @@ function App() {
     }
     document.addEventListener('keyup', handleEscClose);
     document.addEventListener('click', handleOverlayClose);
+  }, [])
+
+  React.useEffect(() => {
+    tokenCheck();
   }, [])
 
   return (
@@ -194,46 +236,58 @@ function App() {
 
           <Route
             path="/signin"
-            element={ <Login /> }
-          />
-
-          <Route
-            path="/"
             element={
-              <Main
-                pic={cardsList}
-                formActivity={formActivity}
-                deletingActive={deletingActive}
-                onChoiceClick={handleChoiceClick}
-                btnContent={btnContent}
-                btnChoiceActve={selectBtnActive}
-                onCardSelect={selectCard}
-                amountSelectedCards={cardsAmount}
-                selectedCards={selectedCards}
-                onCardDelete={deleteCard}
-                cardsListActive={cardsListActive}
-              />
-            }
-          />
-          <Route
-            path="/upload"
-            element={
-              <Loading
-                formActivity={formActivity}
-                addNewCard={addNewCard}
+              <Login
+                handleLogin={handleLogin}
+                unauthorized={unauthorized}
               />
             }
           />
 
-          <Route
-            path="/statistic"
-            element={
-              <Statistic
-                cards={cardsList}
-                statActive={statActive}
-              />
-            }
-          />
+          <Route path="/" element={<ProtectedRoute loggedIn={loggedIn}/>}>
+            <Route
+              path="/"
+              element={
+                <Main
+                  pic={cardsList}
+                  formActivity={formActivity}
+                  deletingActive={deletingActive}
+                  onChoiceClick={handleChoiceClick}
+                  btnContent={btnContent}
+                  btnChoiceActve={selectBtnActive}
+                  onCardSelect={selectCard}
+                  amountSelectedCards={cardsAmount}
+                  selectedCards={selectedCards}
+                  onCardDelete={deleteCard}
+                  cardsListActive={cardsListActive}
+                />
+              }
+            />
+          </Route>
+
+          <Route path="/upload" element={<ProtectedRoute loggedIn={loggedIn}/>}>
+            <Route
+              path="/upload"
+              element={
+                <Loading
+                  formActivity={formActivity}
+                  addNewCard={addNewCard}
+                />
+              }
+            />
+          </Route>
+
+          <Route path="/statistic" element={<ProtectedRoute loggedIn={loggedIn}/>}>
+            <Route
+              path="/statistic"
+              element={
+                <Statistic
+                  cards={cardsList}
+                  statActive={statActive}
+                />
+              }
+            />
+          </Route>
 
         </Routes>
 

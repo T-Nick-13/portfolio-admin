@@ -19,6 +19,7 @@
 
 .link:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 .body_unscrolled {

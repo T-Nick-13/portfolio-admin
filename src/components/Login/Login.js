@@ -10,8 +10,8 @@ function Login(props) {
     password: ''
   })
 
-  const btnClass = `${
-    isValid ? "auth__btn link" : "auth__btn auth__btn_inactive"}`;
+  const btnClass = `${isValid ? "auth__btn link" : "auth__btn auth__btn_inactive"}`;
+  const unauthorizedClass = `${props.unauthorized ? "auth__auth-err  auth__auth-err_active" : "auth__auth-err"}`;
 
   function handleChange(e) {
     const {name, value} = e.target;
@@ -42,6 +42,7 @@ function Login(props) {
             value={data.password} onChange={handleChange} minLength="2" />
         </label>
         <p className="auth__error">{error.password}</p>
+        <p className={unauthorizedClass}>Неверный email или пароль</p>
         <button type="submit" className={btnClass}>Войти</button>
         <p className="auth__text">Ещё не зарегистрированы?&nbsp;
           <Link to="/signup" className="auth__link link">Тестовый вход</Link>

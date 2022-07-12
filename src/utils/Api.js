@@ -5,11 +5,11 @@ export default class Api {
   }
 
   getHeaders() {
-   // const token = localStorage.getItem('token');
+   const token = localStorage.getItem('token');
     return {
       ...this.headers,
       'Content-Type': 'application/json',
-      //'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   }
 
@@ -71,22 +71,13 @@ export default class Api {
     .then(this._checkServerResponse);
   };
 
-  register(name, email, password) {
-    return fetch(`${this._url}/signup`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({name, email, password})
-    })
-    .then(this._checkServerResponse);
-  };
-
-  getContent() {
+  getContent(token) {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this._headers
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
     })
     .then(this._checkServerResponse);
   };

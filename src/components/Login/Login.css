@@ -100,6 +100,22 @@
   margin: 5px 0 20px;
 }
 
+.auth__auth-err {
+  color: #EE3465;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+  font-size: 14px;
+  top: 290px;
+}
+
+.auth__auth-err_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 @media (max-width: 768px) {
   .auth {
     /* padding: 232px 0 232px; */
