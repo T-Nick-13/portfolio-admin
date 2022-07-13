@@ -37,7 +37,7 @@
   color: #fff;
 }
 
-.menu__ul > li:hover > .menu__icon {
+.menu__li:hover > .menu__icon {
   opacity: 1;
   cursor: pointer;
 }
@@ -46,6 +46,12 @@
   text-decoration: none;
   color: #a8a7a7;
   transition: color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.menu__li:hover {
+  color: #fff;
 }
 
 .menu__icon {
@@ -55,7 +61,11 @@
   transition: all 0.3s;
 }
 
-.menu__icon_active {
+.menu__li_active {
+  color: #fff;
+}
+
+.menu__li_active > .menu__icon {
   opacity: 1;
 }
 
@@ -83,7 +93,8 @@
 
 @media (max-width: 884px) {
   .menu__li {
-    display: none;
+    content: '';
+    font-size: 0;
   }
 
   .menu__heading_ts {

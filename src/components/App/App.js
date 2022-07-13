@@ -223,6 +223,7 @@ function App() {
           iconIsActive={formActivity}
           onDeleteClick={handleClickDelete}
           onStatClick={clickStat}
+          deletingActive={deletingActive}
         />
 
         <PopupDel

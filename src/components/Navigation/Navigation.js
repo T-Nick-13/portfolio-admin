@@ -23,26 +23,34 @@ function Navigation(props) {
     props.onStatClick();
   }
 
-  const iconClass = props.iconIsActive ? 'menu__icon_active' : '';
+  const deleteClass = props.deletingActive ? 'menu__li menu__li_active' : 'menu__li';
+  const route = useLocation().pathname;
+  console.log(route)
 
   return (
     <nav className="menu">
       <div className="menu__container">
       {/* <h1 className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</h1> */}
       <Link to="/" className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</Link>
-      <div className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></div>
+      <Link to="/" className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></Link>
       <ul className="menu__ul">
         <li onClick={handleClickLoading}>
-          <img className={`menu__icon ${iconClass}`} src={uploadLogo} alt="download-icon"></img>
-          <Link to="/upload" className="menu__li">Загрузить</Link>
+          <Link to="/upload" className={`${route === '/upload' ? 'menu__li menu__li_active' : 'menu__li'}`}>
+            <img className="menu__icon" src={uploadLogo} alt="download-icon"/>
+            Загрузить
+          </Link>
         </li>
         <li onClick={handleClickDelete}>
-          <img className="menu__icon" src={deletedLogo} alt="delete-icon" ></img>
-          <Link to="/" className="menu__li">Удалить</Link>
+          <Link to="/" className={deleteClass}>
+            <img className="menu__icon" src={deletedLogo} alt="delete-icon" />
+            Удалить
+          </Link>
         </li>
         <li onClick={handleClickStat}>
-          <img className="menu__icon" src={statisticLogo} alt="stat-icon"></img>
-          <Link to="/statistic" className="menu__li">Статистика</Link>
+          <Link to="/statistic" className={`${route === '/statistic' ? 'menu__li menu__li_active' : 'menu__li'}`}>
+            <img className="menu__icon" src={statisticLogo} alt="stat-icon" />
+            Статистика
+          </Link>
         </li>
       </ul>
       </div>
