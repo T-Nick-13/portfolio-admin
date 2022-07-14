@@ -81,11 +81,10 @@ function Loading(props) {
     }
   }
 
-  const formActivity = !props.formActivity ? 'form_inactive' : '';
   const uploadBtnClass = isValid ? 'form__btn form__btn_active' : 'form__btn';
 
   return (
-    <form className={`form ${formClass} ${formActivity}`} onDragOver={handleDragOver}
+    <form className="form" onDragOver={handleDragOver}
       onDragLeave={handleDragLeave} onDrop={handleDrop} onSubmit={submit}>
       <img className="form__image" src={uploadLogo} alt="upload logo" />
       <input className="form__input" id="form__input" type="file" accept="image/*" multiple onChange={handleLoadingInput} />

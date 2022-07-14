@@ -8,11 +8,7 @@
   margin-top: 0;
   position: relative;
   transition: all 0.3s;
-}
-
-.main_shift {
-  visibility: hidden;
-  width: 0;
+  animation: widen 0.3s;
 }
 
 .filter__btn {
@@ -107,6 +103,15 @@
 
 .deleting__bin_inactive {
   visibility: hidden;
+}
+
+@keyframes widen {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @media (max-width: 884px) {

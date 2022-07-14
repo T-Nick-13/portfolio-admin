@@ -1,6 +1,5 @@
 .card {
   position: relative;
-  cursor: pointer;
   margin-bottom: 4px;
 }
 
@@ -8,9 +7,9 @@
   width: 300px;
 }
 
-.card:hover .card__overlay {
+/* .card:hover .card__overlay {
   opacity: 0.3;
-}
+} */
 
 .card:hover .card__tag{
   opacity: 1;
@@ -25,6 +24,15 @@
   top: 0;
   left: 0;
   transition: 0.3s all linear;
+}
+
+.card__overlay:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.card__overlay_inactive {
+  display: none;
 }
 
 .card__overlay_selected {

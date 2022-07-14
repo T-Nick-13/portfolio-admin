@@ -1,6 +1,5 @@
 .form {
   position: absolute;
-  /* left: 45%; */
   left: 50%;
   transform: translate(-50%, 0);
   top: 7%;
@@ -15,13 +14,13 @@
   justify-content: center;
   flex-direction: column;
   transition: all 0.3s;
-  visibility: visible;
+  animation: slidin 0.3s;
 }
 
-.form_inactive {
+/* .form_inactive {
   top: -100%;
   visibility: hidden;
-}
+} */
 
 .form_dragover {
   background: rgb(182 182 182 / 15%);
@@ -143,6 +142,16 @@
     left: 40%;
   }
 } */
+
+
+@keyframes slidin {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 7%;
+  }
+}
 
 @media (max-width: 580px) {
   .form {

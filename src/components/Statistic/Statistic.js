@@ -26,10 +26,8 @@ function Statistic(props) {
     maxValue = Math.max(...tagSet.values());
   })
 
-  const statClass = props.statActive ? 'stat stat_active' : 'stat';
-
   return (
-    <div className={statClass}>
+    <div className="stat">
 
       <div className="stat__works">
         <div className="stat__main">

@@ -16,10 +16,7 @@ let selectedCardsSet = new Set([]);
 function App() {
 
   const [cardsList, setCardsList] = React.useState([]);
-  const [formActivity, setFormActivity] = React.useState(false);
   const [deletingActive, setDeletingActive] = React.useState(false);
-  const [statActive, setStatActive] = React.useState(false);
-  const [cardsListActive, setCardsListActive] = React.useState(true);
   const [selectBtnActive, setSelectBtnActive] = React.useState(false);
   const [cardsAmount, setCardsAmount] = React.useState(0);
   const [selectedCards, setSelectedCards] = React.useState([]);
@@ -51,18 +48,13 @@ function App() {
   }, [])
 
   function handleLoading() {
-    formActivity ? setFormActivity(false) : setFormActivity(true);
     setDeletingActive(false);
     cancelSelection();
-    setCardsListActive(false);
   }
 
   function handleLogoClick() {
-    setFormActivity(false);
     setDeletingActive(false);
     cancelSelection();
-    setStatActive(false);
-    setCardsListActive(true)
   }
 
   function handleClickDelete() {
@@ -72,16 +64,10 @@ function App() {
     } else {
       setDeletingActive(true);
     }
-    setFormActivity(false);
-    setCardsListActive(true);
-    setStatActive(false);
   }
 
   function clickStat() {
-    setStatActive(true);
     cancelSelection();
-    setCardsListActive(false);
-    setFormActivity(false);
     setDeletingActive(false);
   }
 
@@ -188,7 +174,8 @@ function App() {
     api.saveCard(data)
       .then((m) => {
         setCardsList([...m, ...cardsList]);
-        setFormActivity(false);
+        setDeletingActive(false);
+        navigate('/');
     })
       .catch((err) => {
       console.log(err)
@@ -220,7 +207,6 @@ function App() {
         <Navigation
           handleLoading={handleLoading}
           onLogoClick={handleLogoClick}
-          iconIsActive={formActivity}
           onDeleteClick={handleClickDelete}
           onStatClick={clickStat}
           deletingActive={deletingActive}
@@ -251,7 +237,6 @@ function App() {
               element={
                 <Main
                   pic={cardsList}
-                  formActivity={formActivity}
                   deletingActive={deletingActive}
                   onChoiceClick={handleChoiceClick}
                   btnContent={btnContent}
@@ -260,7 +245,7 @@ function App() {
                   amountSelectedCards={cardsAmount}
                   selectedCards={selectedCards}
                   onCardDelete={deleteCard}
-                  cardsListActive={cardsListActive}
+                  selectBtnActive={selectBtnActive}
                 />
               }
             />
@@ -271,7 +256,6 @@ function App() {
               path="/upload"
               element={
                 <Loading
-                  formActivity={formActivity}
                   addNewCard={addNewCard}
                 />
               }
@@ -284,7 +268,6 @@ function App() {
               element={
                 <Statistic
                   cards={cardsList}
-                  statActive={statActive}
                 />
               }
             />
