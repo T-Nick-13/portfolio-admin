@@ -91,6 +91,10 @@
   font-size: 27px;
 }
 
+.menu_inactive {
+  display: none;
+}
+
 @media (max-width: 884px) {
   .menu__li {
     content: '';

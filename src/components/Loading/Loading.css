@@ -17,11 +17,6 @@
   animation: slidin 0.3s;
 }
 
-/* .form_inactive {
-  top: -100%;
-  visibility: hidden;
-} */
-
 .form_dragover {
   background: rgb(182 182 182 / 15%);
 }

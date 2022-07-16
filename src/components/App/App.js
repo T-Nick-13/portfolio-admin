@@ -210,6 +210,7 @@ function App() {
           onDeleteClick={handleClickDelete}
           onStatClick={clickStat}
           deletingActive={deletingActive}
+          loggedIn={loggedIn}
         />
 
         <PopupDel

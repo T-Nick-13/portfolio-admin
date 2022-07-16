@@ -24,10 +24,11 @@ function Navigation(props) {
   }
 
   const deleteClass = props.deletingActive ? 'menu__li menu__li_active' : 'menu__li';
+  const menuClass = props.loggedIn ? 'menu' : 'menu menu_inactive';
   const route = useLocation().pathname;
 
   return (
-    <nav className="menu">
+    <nav className={menuClass}>
       <div className="menu__container">
         <Link to="/" className="menu__heading" onClick={handleLogoClick}>Natalya Stafeeva</Link>
         <Link to="/" className="menu__heading_ts" onClick={handleLogoClick}><p>NS</p></Link>

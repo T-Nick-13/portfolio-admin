@@ -153,3 +153,9 @@ span {
     top: 7%;
   }
 }
+
+@media (max-width: 580px) {
+  .stat {
+    top: 15%;
+  }
+}
