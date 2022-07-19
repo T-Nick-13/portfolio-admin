@@ -1,3 +1,3 @@
-export const MAIN_API = "http://localhost:3001";
+export const MAIN_API = "http://api.portfolio.netitov.ru";
 
 

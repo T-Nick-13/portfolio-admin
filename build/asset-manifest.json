@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/static/css/main.650cd3f4.css",
+    "main.js": "/static/js/main.79b2c1ee.js",
+    "static/js/787.8d9e7a04.chunk.js": "/static/js/787.8d9e7a04.chunk.js",
+    "static/media/bigsale.jpg": "/static/media/bigsale.899e0332e8350c9d859b.jpg",
+    "static/media/families-min.jpg": "/static/media/families-min.a1b5945a3e9247a40aca.jpg",
+    "static/media/St-min.jpg": "/static/media/St-min.5de15fff61fd998d858a.jpg",
+    "static/media/31oct.jpg": "/static/media/31oct.a949f0a940a6785f2cfb.jpg",
+    "static/media/thanks-min.jpg": "/static/media/thanks-min.224c5d7e71bc2ab8d7ca.jpg",
+    "static/media/againhalloween-min.jpg": "/static/media/againhalloween-min.14cf5970f35e97c22d7c.jpg",
+    "static/media/veterans.jpg": "/static/media/veterans.34532fd3d3036bb951c1.jpg",
+    "static/media/new-min.jpg": "/static/media/new-min.5b3a71b7df535dfe88e6.jpg",
+    "static/media/recycle.jpeg": "/static/media/recycle.39564e4604d8a40032ba.jpeg",
+    "static/media/delivers.jpg": "/static/media/delivers.19a419a7e1d0eb829075.jpg",
+    "static/media/salefriday.jpg": "/static/media/salefriday.89ddf8fac42bdbec509e.jpg",
+    "static/media/vaccine.jpeg": "/static/media/vaccine.7f44952185df5a9f57a5.jpeg",
+    "static/media/12345.jpg": "/static/media/12345.c3ae0d709e67a35342a3.jpg",
+    "static/media/AdobeStock_446193555.jpeg": "/static/media/AdobeStock_446193555.bb62becb78753e8f183c.jpeg",
+    "static/media/Inter-Medium.woff?v=3.13": "/static/media/Inter-Medium.cc6a88688869161eb836.woff",
+    "static/media/Inter-Black.woff?v=3.13": "/static/media/Inter-Black.16792010d318c2904562.woff",
+    "static/media/Inter-Regular.woff": "/static/media/Inter-Regular.fc49d131f795b4d48f26.woff",
+    "static/media/Inter-Medium.woff2?v=3.13": "/static/media/Inter-Medium.5b53c519b3184a74a98c.woff2",
+    "static/media/Inter-Black.woff2?v=3.13": "/static/media/Inter-Black.23eb804eb49e365fa2f1.woff2",
+    "static/media/Inter-Regular.woff2": "/static/media/Inter-Regular.2505c0d4b34ffca98f8f.woff2",
+    "static/media/premium-icon-check-mark-4225683.png": "/static/media/premium-icon-check-mark-4225683.f60090ca480838fdee54.png",
+    "static/media/premium-icon-select-2594142.png": "/static/media/premium-icon-select-2594142.92db3fbe1bf8d9265782.png",
+    "static/media/result.svg": "/static/media/result.902d4c1d625ddb67c0060c1549459bd1.svg",
+    "index.html": "/index.html",
+    "static/media/Удалить.svg": "/static/media/Удалить.3bcb87c49cfbf59e745cd69a1a164d5b.svg",
+    "static/media/Загрузить.svg": "/static/media/Загрузить.900063d61cfd1c6e682caf2b07c26c54.svg",
+    "static/media/Статистика.svg": "/static/media/Статистика.05d153e3c031a69b278cdc0d5fc52ce4.svg",
+    "main.650cd3f4.css.map": "/static/css/main.650cd3f4.css.map",
+    "main.79b2c1ee.js.map": "/static/js/main.79b2c1ee.js.map",
+    "787.8d9e7a04.chunk.js.map": "/static/js/787.8d9e7a04.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.650cd3f4.css",
+    "static/js/main.79b2c1ee.js"
+  ]
+}
