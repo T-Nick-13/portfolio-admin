@@ -1,3 +1,3 @@
-export const MAIN_API = "http://api.portfolio.netitov.ru";
+export const MAIN_API = "http://admin.stafeeva.site";
 
 

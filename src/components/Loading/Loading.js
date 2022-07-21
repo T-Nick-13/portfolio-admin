@@ -32,13 +32,14 @@ function Loading(props) {
 
   function checkFileType(file) {
     if (
-      (file && file.type === "image/png") ||
-      file.type === "image/jpeg" ||
-      file.type === "image/jpg"
+      (file && file.type === 'image/png') |
+      file.type === 'image/jpeg' ||
+      file.type === 'image/jpg' ||
+      file.type === 'image/svg+xml'
     ) {
         urlSet.add(window.URL.createObjectURL(file));
         fileSet.push(file);
-      } else alert(`Неподходящий формат файла (${file.type}). Используйте jpeg, jpg, png`);
+      } else alert(`Неподходящий формат файла (${file.type}). Используйте jpeg, jpg, png, svg`);
   }
 
 
