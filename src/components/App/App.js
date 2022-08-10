@@ -8,10 +8,12 @@ import PopupDel from '../PopupDel/PopupDel';
 import Statistic from '../Statistic/Statistic';
 import Login from '../Login/Login';
 import ProtectedRoute from '../ProtectedRoute';
+import PopupResult from '../PopupResult/PopupResult';
 import { MAIN_API } from '../../utils/config';
 import Api from '../../utils/Api';
 
 let selectedCardsSet = new Set([]);
+let intervalIsActive = true;
 
 function App() {
 
@@ -23,6 +25,8 @@ function App() {
   const [activePopup, setPopupActive] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [unauthorized, setUnauthorized] = React.useState(false);
+  const [isActive, setIsActive] = React.useState(false);
+  const [secToTransition, setSecToTransition] = React.useState(7);
 
   const btnContent = selectBtnActive ? 'Отменить' : 'Выбрать';
   const navigate = useNavigate();
@@ -182,6 +186,24 @@ function App() {
       })
   }
 
+  function closePopup() {
+    setIsActive(false);
+    intervalIsActive = false;
+  }
+
+  function handleTransition(target) {
+    let counter = 7;
+    setIsActive(true);
+    const timerId = setInterval(() => {
+      setSecToTransition(--counter);
+      if (counter === 0 || !intervalIsActive) {
+        clearInterval(timerId);
+        setIsActive(false);
+        window.location.replace(target.href);
+      }
+    }, 1000);
+  }
+
   React.useEffect(() => {
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
@@ -220,6 +242,12 @@ function App() {
           onSubmit={submitDeleting}
         />
 
+        <PopupResult
+          isActive={isActive}
+          secToTransition={secToTransition}
+          closePopup={closePopup}
+        />
+
         <Routes>
 
           <Route
@@ -228,6 +256,7 @@ function App() {
               <Login
                 handleLogin={handleLogin}
                 unauthorized={unauthorized}
+                onLinkClick={handleTransition}
               />
             }
           />

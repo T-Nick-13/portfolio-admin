@@ -28,6 +28,11 @@ function Login(props) {
     props.handleLogin(data);
   }
 
+  function handleTransition(e) {
+    e.preventDefault();
+    props.onLinkClick(e.target);
+  }
+
   return(
     <div className="auth">
       <p className="auth__heading">Рады видеть!</p>
@@ -45,7 +50,7 @@ function Login(props) {
         <p className={unauthorizedClass}>Неверный email или пароль</p>
         <button type="submit" className={btnClass}>Войти</button>
         <p className="auth__text">Ещё не зарегистрированы?&nbsp;
-          <Link to="/signup" className="auth__link link">Тестовый вход</Link>
+          <a className="auth__link link" href="http://test.stafeeva.site" onClick={handleTransition}>Тестовый вход</a>
         </p>
       </form>
     </div>
