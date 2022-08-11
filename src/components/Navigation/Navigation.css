@@ -142,6 +142,10 @@
     align-items: center;
   }
 
+  .menu_inactive {
+    display: none;
+  }
+
   .menu__container {
     padding: 0;
     flex-direction: row;
