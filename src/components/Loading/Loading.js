@@ -22,11 +22,6 @@ function Loading(props) {
 
   function handleDragLeave(e) {
     e.preventDefault();
-/*     let dx = e.pageX - e.currentTarget.offsetLeft;
-    let dy = e.pageY - e.currentTarget.offsetTop;
-    if ((dx < 0) || (dx > e.currentTarget.clientWidth) || (dy < 0) || (dy > e.currentTarget.clientHeight)) {
-      setFormClass('');
-    }; */
     setFormClass('');
   }
 

@@ -101,10 +101,6 @@ function App() {
     setPopupActive(true);
   }
 
-  function closePopup() {
-    setPopupActive(false);
-  }
-
   function submitDeleting() {
     handleChoiceClick();
     closePopup();
@@ -188,6 +184,7 @@ function App() {
 
   function closePopup() {
     setIsActive(false);
+    setPopupActive(false);
     intervalIsActive = false;
   }
 
