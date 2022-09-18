@@ -1,4 +1,4 @@
-# Portfilio-admin
+# Portfolio-admin
 
 Ссылка на сервис: <http://admin.stafeeva.site/>
 Сервис используется для управления сайтом портфолио: <http://stafeeva.site/>
