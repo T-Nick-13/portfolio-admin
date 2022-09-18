@@ -1,7 +1,7 @@
 # Portfolio-admin
 
-Ссылка на сервис: <http://admin.stafeeva.site/>  
-Сервис используется для управления сайтом портфолио: <http://stafeeva.site/>
+Ссылка на сервис: <https://admin.stafeeva.site/>
+Сервис используется для управления сайтом портфолио: <https://stafeeva.site/>
 
 ## Как это работает
 
