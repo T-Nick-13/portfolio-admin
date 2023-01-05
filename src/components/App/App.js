@@ -23,6 +23,7 @@ function App() {
   const [cardsAmount, setCardsAmount] = React.useState(0);
   const [selectedCards, setSelectedCards] = React.useState([]);
   const [activePopup, setPopupActive] = React.useState(false);
+  const [activeMove, setActiveMove] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [unauthorized, setUnauthorized] = React.useState(false);
   const [isActive, setIsActive] = React.useState(false);
@@ -185,6 +186,7 @@ function App() {
   function closePopup() {
     setIsActive(false);
     setPopupActive(false);
+    setActiveMove(false);
     intervalIsActive = false;
   }
 
@@ -199,6 +201,15 @@ function App() {
         window.location.replace(target.href);
       }
     }, 1000);
+  }
+
+  function moveToMainPage() {
+    console.log('hi')
+    setActiveMove(true);
+  }
+
+  function submitMoveToMainPage() {
+    console.log('hi')
   }
 
   React.useEffect(() => {
@@ -236,7 +247,9 @@ function App() {
           activePopup={activePopup}
           amountSelectedCards={cardsAmount}
           onPopupClose={closePopup}
-          onSubmit={submitDeleting}
+          onSubmitDelete={submitDeleting}
+          onSubmitMove={submitMoveToMainPage}
+          activeMove={activeMove}
         />
 
         <PopupResult
@@ -273,6 +286,7 @@ function App() {
                   selectedCards={selectedCards}
                   onCardDelete={deleteCard}
                   selectBtnActive={selectBtnActive}
+                  onMoveClick={moveToMainPage}
                 />
               }
             />
@@ -284,6 +298,26 @@ function App() {
               element={
                 <Loading
                   addNewCard={addNewCard}
+                />
+              }
+            />
+          </Route>
+
+          <Route path="/main-page" element={<ProtectedRoute loggedIn={loggedIn}/>}>
+            <Route
+              path="/main-page"
+              element={
+                <Main
+                  pic={cardsList}
+                  deletingActive={deletingActive}
+                  onChoiceClick={handleChoiceClick}
+                  btnContent={btnContent}
+                  btnChoiceActve={selectBtnActive}
+                  onCardSelect={selectCard}
+                  amountSelectedCards={cardsAmount}
+                  selectedCards={selectedCards}
+                  onCardDelete={deleteCard}
+                  selectBtnActive={selectBtnActive}
                 />
               }
             />

@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import uploadLogo from '../../images/light/Загрузить.svg';
-import deletedLogo from '../../images/light/Удалить.svg';
+import deletedLogo from '../../images/light/icons8-редактировать-50.png';
 import statisticLogo from '../../images/light/Статистика.svg';
+import mainPage from '../../images/light/icons8-открыть-в-окне-51.png';
 
 function Navigation(props) {
 
@@ -42,7 +43,13 @@ function Navigation(props) {
           <li onClick={handleClickDelete}>
             <Link to="/" className={deleteClass}>
               <img className="menu__icon" src={deletedLogo} alt="delete-icon" />
-              Удалить
+              Изменить
+            </Link>
+          </li>
+          <li onClick={handleClickDelete}>
+            <Link to="/main-page" className={`${route === '/main-page' ? 'menu__li menu__li_active' : 'menu__li'}`}>
+              <img className="menu__icon" src={mainPage} alt="main-page-icon" />
+              Главный экран
             </Link>
           </li>
           <li onClick={handleClickStat}>
