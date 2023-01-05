@@ -82,4 +82,15 @@ export default class Api {
     .then(this._checkServerResponse);
   };
 
+  editCard(data) {
+    return fetch(`${this._url}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(this._checkServerResponse);
+  }
+
 }

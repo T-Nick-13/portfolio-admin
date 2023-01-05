@@ -18,6 +18,7 @@ let intervalIsActive = true;
 function App() {
 
   const [cardsList, setCardsList] = React.useState([]);
+  const [mainCards, setMainCards] = React.useState([]);
   const [deletingActive, setDeletingActive] = React.useState(false);
   const [selectBtnActive, setSelectBtnActive] = React.useState(false);
   const [cardsAmount, setCardsAmount] = React.useState(0);
@@ -39,17 +40,22 @@ function App() {
     },
   });
 
-  React.useEffect(() => {
+  function getData() {
     Promise.all([
       api.getCards()
     ])
     .then(([cards]) => {
       localStorage.setItem('cards', JSON.stringify(cards));
       setCardsList(JSON.parse(localStorage.getItem('cards')));
+      setMainCards(JSON.parse(localStorage.getItem('cards')).filter((i) => i.mainPage === true));
     })
     .catch((err) => {
       console.log(err);
     })
+  }
+
+  React.useEffect(() => {
+    getData();
   }, [])
 
   function handleLoading() {
@@ -177,7 +183,7 @@ function App() {
         setCardsList([...m, ...cardsList]);
         setDeletingActive(false);
         navigate('/');
-    })
+      })
       .catch((err) => {
       console.log(err)
       })
@@ -204,12 +210,30 @@ function App() {
   }
 
   function moveToMainPage() {
-    console.log('hi')
     setActiveMove(true);
   }
 
   function submitMoveToMainPage() {
-    console.log('hi')
+    handleChoiceClick();
+    closePopup();
+    const newCards = selectedCards.map((i) => {
+      i.mainPage = true;
+      return i;
+    })
+    api.editCard(newCards)
+      .then((m) => {
+        setMainCards([...m, ...mainCards]);
+        navigate('/main-page');
+      })
+      .catch((err) => {
+      console.log(err)
+      })
+
+      closePopup();
+  }
+
+  function clickMainPage() {
+    setDeletingActive(false);
   }
 
   React.useEffect(() => {
@@ -241,6 +265,7 @@ function App() {
           onStatClick={clickStat}
           deletingActive={deletingActive}
           loggedIn={loggedIn}
+          handleMainPageClick={clickMainPage}
         />
 
         <PopupDel
@@ -308,7 +333,7 @@ function App() {
               path="/main-page"
               element={
                 <Main
-                  pic={cardsList}
+                  pic={mainCards}
                   deletingActive={deletingActive}
                   onChoiceClick={handleChoiceClick}
                   btnContent={btnContent}
@@ -318,6 +343,7 @@ function App() {
                   selectedCards={selectedCards}
                   onCardDelete={deleteCard}
                   selectBtnActive={selectBtnActive}
+
                 />
               }
             />

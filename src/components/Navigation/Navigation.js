@@ -46,7 +46,7 @@ function Navigation(props) {
               Изменить
             </Link>
           </li>
-          <li onClick={handleClickDelete}>
+          <li onClick={props.handleMainPageClick}>
             <Link to="/main-page" className={`${route === '/main-page' ? 'menu__li menu__li_active' : 'menu__li'}`}>
               <img className="menu__icon" src={mainPage} alt="main-page-icon" />
               Главный экран
