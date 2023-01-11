@@ -1,10 +1,13 @@
+import React from 'react';
 import Card from '../Card/Card';
+import Masonry, {ResponsiveMasonry} from 'react-responsive-masonry';
 
 import bin from '../../images/light/free-icon-delete-5613811.png';
 import mainPage from '../../images/light/icons8-открыть-в-окне-50.png';
 
 function Main(props) {
 
+  const cardList = JSON.parse(localStorage.getItem('cards'));
   const editClass = props.deletingActive ? '' : 'edit_inactive';
   const counterClass = props.btnChoiceActve ? '' : 'edit__counter_inactive';
   const binClass = props.amountSelectedCards > 0 ? '' : 'edit__img_inactive';
@@ -23,8 +26,64 @@ function Main(props) {
     props.onMoveClick();
   }
 
+  React.useEffect(() => {
+    const draggableElements = document.querySelector('.masonry').childNodes;
+    setTimeout(() => {
+      draggableElements.forEach(container => {
+        container.addEventListener('dragover', e => {
+          e.preventDefault();
+          const afterElement = getDragAfterElement(container, e.clientY);//сдвигаемый элемент
+          const draggable = document.querySelector('.dragging');//перемещяемый элемент
+          if (afterElement == null) {
+            container.appendChild(draggable);
+          } else {
+            container.insertBefore(draggable, afterElement);
+          }
+        });
+      });
+    })
+  }, [])
+
+  function findIndex() {
+    const draggableElements = document.querySelector('.masonry').childNodes;
+    draggableElements.forEach((container) => {
+      Array.from(container.childNodes).forEach((i) => {
+        const cardId = i.id;
+        const draggableElNumber = Array.from(container.childNodes).indexOf(i);
+        const columnNumber = Array.from(draggableElements).indexOf(container);
+        const columnLength = draggableElements.length;
+        const newIndexDraggable = draggableElNumber * columnLength + columnNumber;
+        cardList.forEach((el, i) => {
+          if(el._id === cardId) {
+            cardList[i].index = newIndexDraggable;
+          }
+        });
+      })
+    })
+  }
+
+  window.addEventListener('beforeunload', () => {
+    findIndex();
+    if (JSON.parse(localStorage.getItem('newCards')) != null) {
+      props.moveCards(cardList);
+    }
+  })
+
+  function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
+
   return (
-    <main className="main" >
+    <main className="main">
       <div className={`edit ${editClass}`}>
         <div className="edit__container">
           <button className="edit__btn" onClick={handleChoiceClick}>{props.btnContent}</button>
@@ -34,20 +93,27 @@ function Main(props) {
             title="на главную страницу"></img>
         </div>
       </div>
-      {props.pic.map((card) =>{
-        return (
-          <Card
-            card={card}
-            tag={card.tag}
-            key={card._id}
-            onCardSelect={props.onCardSelect}
-            btnChoiceActve={props.btnChoiceActve}
-            amountSelectedCards={props.amountSelectedCards}
-            selectedCards={props.selectedCards}
-            selectBtnActive={props.selectBtnActive}
-          />
-        )
-      })}
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{350: 1, 580: 2, 900: 3}}
+      >
+        <Masonry className="masonry" gutter="5px">
+          {props.pic.map((card) =>{
+            return (
+              <Card
+                card={card}
+                tag={card.tag}
+                key={card._id}
+                id={card._id}
+                onCardSelect={props.onCardSelect}
+                btnChoiceActve={props.btnChoiceActve}
+                amountSelectedCards={props.amountSelectedCards}
+                selectedCards={props.selectedCards}
+                selectBtnActive={props.selectBtnActive}
+              />
+            )
+          })}
+        </Masonry>
+      </ResponsiveMasonry>
     </main>
 
   );

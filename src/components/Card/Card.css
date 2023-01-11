@@ -1,6 +1,6 @@
 .card {
   position: relative;
-  margin-bottom: 4px;
+  /* margin-bottom: 4px; */
 }
 
 .card_rating {
@@ -53,6 +53,14 @@
 .card__img {
   width: 100%;
   display: block;
+}
+
+.dragging {
+  opacity: 0.3;
+}
+
+.dragover {
+  box-shadow: 0px 0px 6px 2px #898989;
 }
 
 .card__img_rating {

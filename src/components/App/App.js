@@ -40,13 +40,19 @@ function App() {
     },
   });
 
+/*   const initCards = props.pic.sort(function(a, b){
+    return a.index-b.index
+  }) */
+
   function getData() {
     Promise.all([
       api.getCards()
     ])
     .then(([cards]) => {
       localStorage.setItem('cards', JSON.stringify(cards));
-      setCardsList(JSON.parse(localStorage.getItem('cards')));
+      setCardsList(JSON.parse(localStorage.getItem('cards')).sort(function(a, b){
+        return a.index-b.index
+      }));
       setMainCards(JSON.parse(localStorage.getItem('cards')).filter((i) => i.mainPage === true));
     })
     .catch((err) => {
@@ -178,14 +184,24 @@ function App() {
       data.append('tag', f);
     })
 
+    nameSet.forEach((f) => {
+      data.append('mainPage', false);
+    })
+
+    nameSet.forEach((f) => {
+      const count = cardsList.length + Array.from(nameSet.values()).indexOf(f);
+      data.append('index', count);
+      console.log(count)
+    })
+
     api.saveCard(data)
       .then((m) => {
-        setCardsList([...m, ...cardsList]);
+        setCardsList([...cardsList, ...m,]);
         setDeletingActive(false);
         navigate('/');
       })
       .catch((err) => {
-      console.log(err)
+        console.log(err);
       })
   }
 
@@ -228,8 +244,14 @@ function App() {
       .catch((err) => {
       console.log(err)
       })
-
       closePopup();
+  }
+
+  function moveCards(data) {
+    api.editCard(data)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   function clickMainPage() {
@@ -312,6 +334,7 @@ function App() {
                   onCardDelete={deleteCard}
                   selectBtnActive={selectBtnActive}
                   onMoveClick={moveToMainPage}
+                  moveCards={moveCards}
                 />
               }
             />

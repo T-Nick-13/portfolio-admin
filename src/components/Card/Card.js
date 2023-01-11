@@ -10,14 +10,22 @@ function Card(props) {
     }
   }
 
+  function startDrag(e) {
+    e.currentTarget.classList.add('dragging');
+  }
+
+  function endDrag(e) {
+    e.currentTarget.classList.remove('dragging');
+  }
+
   const isLiked = props.selectedCards.some(i => i === props.card);
   const overlaySelectedClass = isLiked ? 'card__overlay card__overlay_selected' : 'card__overlay';
   const selectedClass = isLiked ? 'card__selected_active' : '';
   const newClass = !props.selectBtnActive ? 'card__overlay card__overlay_inactive' : overlaySelectedClass;
 
   return (
-    <div className="card" >
-      <img src={props.card.link} alt={props.card.name} className="card__img" ></img>
+    <div className="card draggable" draggable="true" onDragStart={startDrag} onDragEnd={endDrag} id={props.id}>
+      <img src={props.card.link} alt={props.card.name} className="card__img"></img>
       <div className={newClass} onClick={selectCard} ></div>
       <img src={selectedLogo} alt="selected logo" className={`card__selected ${selectedClass}`} ></img>
     </div>
