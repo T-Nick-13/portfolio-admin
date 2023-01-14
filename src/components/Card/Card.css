@@ -93,6 +93,19 @@
   visibility: hidden;
 }
 
+.card__delete-icon {
+  width: 23px;
+  visibility: visible;
+  top: 3px;
+  opacity: 0.6;
+  transition: all 0.3s;
+}
+
+.card__delete-icon:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 .card__selected_active {
   visibility: visible;
 }

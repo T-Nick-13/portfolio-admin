@@ -131,6 +131,7 @@ function App() {
       })
   }
 
+
   function handleLogin(data) {
     const { email, password } = data;
     api.authorize(email, password)
@@ -248,8 +249,8 @@ function App() {
     api.editCard(data)
       .then(() => {
         getData();
-        /* localStorage.removeItem('newCards');
-        localStorage.removeItem('newMainCards'); */
+        localStorage.removeItem('newCards');
+        localStorage.removeItem('newMainCards');
       })
       .catch((err) => {
         console.log(err)
@@ -370,6 +371,7 @@ function App() {
                   onCardDelete={deleteCard}
                   selectBtnActive={selectBtnActive}
                   moveCards={moveCards}
+                  deleteFromMainPage={moveCards}
                   key="2"
                 />
               }

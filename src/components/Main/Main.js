@@ -124,6 +124,7 @@ function Main(props) {
                 amountSelectedCards={props.amountSelectedCards}
                 selectedCards={props.selectedCards}
                 selectBtnActive={props.selectBtnActive}
+                deleteFromMainPage={props.deleteFromMainPage}
               />
             )
           })}
