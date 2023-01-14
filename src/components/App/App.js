@@ -40,10 +40,6 @@ function App() {
     },
   });
 
-/*   const initCards = props.pic.sort(function(a, b){
-    return a.index-b.index
-  }) */
-
   function getData() {
     Promise.all([
       api.getCards()
@@ -53,7 +49,9 @@ function App() {
       setCardsList(JSON.parse(localStorage.getItem('cards')).sort(function(a, b){
         return a.index-b.index
       }));
-      setMainCards(JSON.parse(localStorage.getItem('cards')).filter((i) => i.mainPage === true));
+      setMainCards(JSON.parse(localStorage.getItem('cards')).filter((i) => i.mainPage === true).sort(function(a, b){
+        return a.index-b.index
+      }));
     })
     .catch((err) => {
       console.log(err);
@@ -191,7 +189,6 @@ function App() {
     nameSet.forEach((f) => {
       const count = cardsList.length + Array.from(nameSet.values()).indexOf(f);
       data.append('index', count);
-      console.log(count)
     })
 
     api.saveCard(data)
@@ -238,17 +235,22 @@ function App() {
     })
     api.editCard(newCards)
       .then((m) => {
-        setMainCards([...m, ...mainCards]);
+        setMainCards([...mainCards,...m,]);
+        setDeletingActive(false);
         navigate('/main-page');
       })
       .catch((err) => {
       console.log(err)
       })
-      closePopup();
   }
 
   function moveCards(data) {
     api.editCard(data)
+      .then(() => {
+        getData();
+        /* localStorage.removeItem('newCards');
+        localStorage.removeItem('newMainCards'); */
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -320,7 +322,7 @@ function App() {
 
           <Route path="/" element={<ProtectedRoute loggedIn={loggedIn}/>}>
             <Route
-              path="/"
+              exact path="/"
               element={
                 <Main
                   pic={cardsList}
@@ -335,6 +337,7 @@ function App() {
                   selectBtnActive={selectBtnActive}
                   onMoveClick={moveToMainPage}
                   moveCards={moveCards}
+                  key="1"
                 />
               }
             />
@@ -366,7 +369,8 @@ function App() {
                   selectedCards={selectedCards}
                   onCardDelete={deleteCard}
                   selectBtnActive={selectBtnActive}
-
+                  moveCards={moveCards}
+                  key="2"
                 />
               }
             />

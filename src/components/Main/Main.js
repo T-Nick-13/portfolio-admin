@@ -1,13 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Card from '../Card/Card';
 import Masonry, {ResponsiveMasonry} from 'react-responsive-masonry';
-
 import bin from '../../images/light/free-icon-delete-5613811.png';
 import mainPage from '../../images/light/icons8-открыть-в-окне-50.png';
 
 function Main(props) {
 
-  const cardList = JSON.parse(localStorage.getItem('cards'));
+  const routerType = useLocation().pathname === '/main-page' ? 'newMainCards' : 'newCards';
+  const cardList = props.pic.map((i) => {
+    return i
+  });
   const editClass = props.deletingActive ? '' : 'edit_inactive';
   const counterClass = props.btnChoiceActve ? '' : 'edit__counter_inactive';
   const binClass = props.amountSelectedCards > 0 ? '' : 'edit__img_inactive';
@@ -39,6 +42,7 @@ function Main(props) {
           } else {
             container.insertBefore(draggable, afterElement);
           }
+          findIndex();
         });
       });
     })
@@ -58,16 +62,27 @@ function Main(props) {
             cardList[i].index = newIndexDraggable;
           }
         });
+        localStorage.setItem(routerType, JSON.stringify(cardList));
       })
     })
   }
 
-  window.addEventListener('beforeunload', () => {
-    findIndex();
-    if (JSON.parse(localStorage.getItem('newCards')) != null) {
-      props.moveCards(cardList);
+  React.useEffect(() => {
+    const data = JSON.parse(localStorage.getItem(routerType));
+    window.addEventListener('beforeunload', () => {
+      props.moveCards(data);
+    })
+    return () => window.addEventListener('beforeunload', () => {
+      props.moveCards(data);
+    })
+  }, [])
+
+  React.useEffect(() => {
+    const data = JSON.parse(localStorage.getItem(routerType));
+    if (data) {
+      props.moveCards(JSON.parse(localStorage.getItem(routerType)));
     }
-  })
+  }, [])
 
   function getDragAfterElement(container, y) {
     const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
